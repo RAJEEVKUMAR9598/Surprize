@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For My Sweety ❤️</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#08030a;color:#fff7fb;font-family:Arial,sans-serif;overflow-x:hidden}
+.page{display:none;min-height:100vh;padding:70px 15px 40px;align-items:flex-start;justify-content:center}
+.page.active{display:flex;animation:fade .45s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#p0{align-items:center;text-align:center;padding:25px 15px}
+.wrap{width:min(850px,100%)}
+.glass{background:linear-gradient(145deg,#ffffff10,#ffffff05);border:1px solid #ff9bc438;border-radius:26px;padding:clamp(20px,4vw,38px);box-shadow:0 25px 80px #000b}
+.script{font-family:cursive;font-size:clamp(55px,11vw,105px);color:#ffd1e3;text-shadow:0 0 30px #ff5d9e55}
+.eyebrow{font-size:10px;letter-spacing:4px;color:#ffabc9;text-transform:uppercase}
+h1,h2,h3{font-family:Georgia,serif}
+h1{font-size:clamp(40px,8vw,72px);line-height:1;margin:18px 0}
+h2{font-size:clamp(30px,6vw,48px)}
+p{font-size:15px;line-height:1.85;color:#d9c0cc}
+.romantic{font-family:Georgia,serif;font-size:clamp(21px,4vw,32px);color:#ffe0ec;line-height:1.5}
+.btn,.back{border-radius:999px;padding:11px 18px;border:1px solid #ff8fbb66;background:#ff5d9e18;color:#fff;cursor:pointer;font-weight:bold}
+.btn{margin:8px}.btn:hover,.back:hover{background:#ff5d9e32;transform:translateY(-2px)}
+.nav{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:24px}
+.timeline{display:grid;gap:14px;margin-top:25px}
+.memory{padding:18px 20px;border-left:2px solid #ff75ad;background:#ff5d9e08;border-radius:0 16px 16px 0}
+.memory .date,.date{font-size:10px;letter-spacing:2px;color:#ffabc9}
+.memory h3{font-size:25px;margin:7px 0}
+.memory p{margin:0}
+.envelopes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:25px 0}
+.env{text-align:center;padding:20px 8px;border:1px solid #ff9bc42d;border-radius:18px;background:#ffffff06;cursor:pointer}
+.env:hover{transform:translateY(-4px)}
+.env .icon{font-size:36px}.env b{font-family:Georgia,serif}
+.letter{display:none}.letter.show{display:block}
+.story{max-width:780px;margin:auto}
+.story p{font-size:16px}
+.other-story,.cafe-memory{margin:35px auto;padding:27px 23px;max-width:790px;text-align:center;border:1px solid #ff9bc42d;border-radius:24px;background:linear-gradient(145deg,#24101d,#0b070d)}
+.other-label{font-size:10px;letter-spacing:3px;color:#ff9fc3}
+.other-lead{font-family:Georgia,serif;font-size:28px;color:#ffe0ec}
+.other-quote,.cafe-quote{margin:25px 0;padding:20px 10px;border-block:1px solid #ff9bc42d;font-family:Georgia,serif;font-size:clamp(25px,5vw,40px);color:#ffe1ed;line-height:1.4}
+.cafe-memory{text-align:left;background:radial-gradient(circle at 85% 10%,#ff5d9e18,transparent 35%),linear-gradient(145deg,#2b101f,#0b070d)}
+.cafe-memory h3{font-size:37px;color:#ffd1e3;margin:10px 0 20px}
+.cafe-memory p{font-size:16px}
+.cafe-ending{text-align:center}.cafe-ending span{display:block;font-family:Georgia,serif;font-size:27px;color:#ff9fc3}.cafe-ending small{display:block;color:#bda3b0;margin-top:3px}
+.final{min-height:250px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:clamp(28px,6vw,52px);text-align:center;line-height:1.4}
+.secret input{padding:12px;border-radius:12px;border:1px solid #ff9bc43b;background:#ffffff08;color:white;text-align:center}
+#petals{position:fixed;inset:0;pointer-events:none;z-index:10}.petal{position:absolute;top:-30px;animation:fall linear forwards}@keyframes fall{to{transform:translate3d(var(--x),110vh,0) rotate(500deg);opacity:0}}
+@keyframes float{to{transform:translateY(-110vh);opacity:0}}
+@media(max-width:650px){.page{padding:65px 12px 35px}.glass{padding:19px 15px;border-radius:21px}.envelopes{grid-template-columns:1fr 1fr}.cafe-memory{padding:22px 17px}.cafe-memory p,.story p{font-size:14px}.nav{align-items:flex-start}.back{padding:8px 12px;font-size:14px}}
+@media(max-width:390px){.envelopes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="petals"></div>
+
+<section class="page active" id="p0">
+<div class="wrap">
+<div class="eyebrow">A little universe made by Rajeev</div>
+<div class="script">For my Sweety</div>
+<div class="romantic">Some people enter your life…<br>and somehow become your favourite part of it. ❤️</div>
+<button class="btn" id="startBtn">♡ Start our story</button>
+</div>
+</section>
+
+<section class="page" id="p1"><div class="wrap glass">
+<div class="nav"><button class="back" onclick="go(0)">♡ Back to us</button><span class="eyebrow">Chapter I</span></div>
+<div class="center"><div class="eyebrow">15 MAY 2019</div><h1>Where our story quietly began</h1>
+<p class="romantic">Kuch beginnings planned nahi hoti… bas ek moment hota hai jo yaad reh jaata hai. ❤️</p></div>
+<div class="cafe-memory">
+<div class="date">08 JULY 2025 • OUR FIRST MEETING</div>
+<h3>☕ The Window</h3>
+<p><strong>08 July 2025.</strong> Hum dono pehli baar milne gaye the. Dil mein excitement bhi thi, thodi nervousness bhi.</p>
+<p>Phir cafe ki window ke bahar maine tumhe pehli baar dekha.</p>
+<p><strong>Bas ek jhalak mili… aur main wahi ruk gaya. ❤️</strong></p>
+<p>Calls aur screens ke through tumhe kitni baar dekha tha, lekin us din pehli baar tum sach mein mere saamne thi.</p>
+<p>Screen ke us paar wali Sweety… <strong>aaj meri aankhon ke saamne thi.</strong></p>
+<div class="cafe-quote">“Haan… ye wahi hai.” ❤️</div>
+<p>Us moment mein laga jaise waqt thoda sa ruk gaya ho.</p>
+<div class="cafe-ending"><span>08 • 07 • 2025</span><small>The day I finally saw you.</small><small>The day a screen became real. 🌹</small></div>
+</div>
+<div class="timeline">
+<div class="memory"><div class="date">FIRST CONNECTION</div><h3>The first video call</h3><p>Screen par tumhe pehli baar dekhna. Call khatam hui, lekin dil ne socha — kaash thodi aur der baat hoti.</p></div>
+<div class="memory"><div class="date">FIRST VOICE</div><h3>Tumhari awaaz</h3><p>Pehli baar tumhari real voice suni. Chhota sa moment tha, lekin yaad reh gaya.</p></div>
+<div class="memory"><div class="date">MY BIRTHDAY</div><h3>Woh raat wali surprise call 🌙</h3><p>Mere birthday par tumhari surprise video call — distance ekdum chhota lagne laga tha.</p></div>
+</div>
+<div style="text-align:center"><button class="btn" onclick="go(2)">♡ Keep going</button></div>
+</div></section>
+
+<section class="page" id="p2"><div class="wrap glass">
+<div class="nav"><button class="back" onclick="go(1)">♡ Back to our story</button><span class="eyebrow">Chapter II</span></div>
+<div style="text-align:center"><div class="eyebrow">Little things</div><h1>Why you, Sweety?</h1><p class="romantic">Tumhari smile, tumhari voice, tumhara gussa… even your little things became my favourite things.</p></div>
+<div class="envelopes">
+<div class="env" onclick="letter(0)"><div class="icon">💌</div><b>When you miss me</b></div>
+<div class="env" onclick="letter(1)"><div class="icon">🌹</div><b>For your smile</b></div>
+<div class="env" onclick="letter(2)"><div class="icon">❤️</div><b>Why I love you</b></div>
+<div class="env" onclick="letter(3)"><div class="icon">🔮</div><b>Our tomorrow</b></div>
+</div>
+<div class="glass letter" id="letter"></div>
+<div style="text-align:center"><button class="btn" onclick="go(3)">♡ Next chapter</button></div>
+</div></section>
+
+<section class="page" id="p3"><div class="wrap glass">
+<div class="nav"><button class="back" onclick="go(2)">♡ Back to our story</button><span class="eyebrow">Chapter III</span></div>
+<div style="text-align:center"><div class="eyebrow">Long Distance Diaries</div><h1>Still close, even from far away</h1><p class="romantic">Kabhi calls, kabhi messages, kabhi bas ek “good night” — chhoti cheezein hi distance ko manageable banati rahi. ❤️</p></div>
+<div class="timeline">
+<div class="memory"><div class="date">THE WAIT</div><h3>Waiting for the next call</h3><p>Kabhi busy day ke baad bhi ek call ka wait. Bas tumhari awaaz sunni hoti thi.</p></div>
+<div class="memory"><div class="date">THE LAUGHTER</div><h3>Random conversations</h3><p>Serious baat se random bakchodi tak — pata hi nahi chalta tha time kab nikal gaya.</p></div>
+<div class="memory"><div class="date">THE DISTANCE</div><h3>Far, but never really far</h3><p>Distance map par tha. Dil mein nahi.</p></div>
+</div>
+<div style="text-align:center"><button class="btn" onclick="go(4)">♡ Read the story</button></div>
+</div></section>
+
+<section class="page" id="p4"><div class="wrap glass"><div class="nav"><button class="back" onclick="go(3)">♡ Back to our story</button><span class="eyebrow">Our Story</span></div>
+<div class="story"><div style="text-align:center"><div class="eyebrow">2019 → NOW</div><h1>Ek chhoti si story…</h1></div>
+<p><strong>15 May 2019.</strong> Humein tab nahi pata tha ki ek normal beginning itni saari memories mein badal jayegi.</p>
+<p>Time ke saath calls aaye, conversations badhi, comfort badha… aur ek aisa connection bana jise distance bhi easily explain nahi kar sakta.</p>
+<p>Kabhi hasi, kabhi gussa, kabhi manana, kabhi ek dusre ko miss karna — perfect nahi tha, but real tha.</p>
+<p>Humne screens ke through birthdays celebrate kiye, random moments share kiye, aur ek dusre ki everyday life ka part bante gaye.</p>
+<div class="other-story"><div class="other-label">♡ ANOTHER LITTLE STORY ♡</div><h2>Some people enter your life…</h2><p class="other-lead">and somehow become your favourite part of it. ❤️</p><p>Shayad humari story bhi isi tarah thi — bina kisi perfect plan ke, bas dheere-dheere tum meri favourite person ban gayi.</p><div class="other-quote">“Somewhere between hello and forever,<br>you became home.” ❤️</div><p>Isliye ending likhna mushkil hai… kyunki main abhi bhi <strong>next chapter</strong> ka wait kar raha hoon. 🌹</p></div>
+<p class="romantic" style="text-align:center">Aur ab… story ka next page tumhare birthday se start hota hai. ❤️</p>
+<div style="text-align:center"><button class="btn" onclick="go(5)">♡ One last thing…</button></div>
+</div></div></section>
+
+<section class="page" id="p5"><div class="wrap glass" style="text-align:center">
+<div class="nav"><button class="back" onclick="go(4)">♡ Back to our story</button><span class="eyebrow">Final Chapter</span></div>
+<div class="eyebrow">The last chapter</div><div class="final" id="finalText"></div>
+<div id="end" style="display:none"><div class="script">Happy Birthday, Sweety ❤️</div><p class="romantic">“If I could relive one day, I would relive the moment I first saw you… and I would still choose you.”</p><p>— Rajeev</p><button class="btn" onclick="go(6)">♡ There's one secret left</button></div>
+</div></section>
+
+<section class="page" id="p6"><div class="wrap glass secret" style="text-align:center">
+<div class="nav"><button class="back" onclick="go(5)">♡ Back to you</button><span class="eyebrow">Final Secret</span></div>
+<div class="script">Just for you…</div><p>Enter one of our special dates.</p><input id="pass" placeholder="DDMMYYYY"><br><button class="btn" onclick="unlock()">Unlock my heart ❤️</button>
+<div id="secretMsg" style="display:none"><h2>ACCESS GRANTED 🌹</h2><p>15 May 2019 — our beginning.</p><p>08 July 2025 — the day a screen became real.</p><p class="romantic">“You are still my favourite person.” ❤️</p></div>
+</div></section>
+
+<script>
+const pages=[...document.querySelectorAll('.page')];
+const song=new Audio();
+song.loop=true;
+song.preload='auto';
+song.volume=.72;
+const tracks={
+0:'assets/song1.mp3',
+1:'assets/song2.mp3',
+2:'assets/song3.mp3',
+3:'assets/song3.mp3',
+4:'assets/song4.mp3',
+5:'assets/song4.mp3',
+6:'assets/song4.mp3'
+};
+let currentTrack='';
+let musicStarted=false;
+
+function setTrack(n){
+ const file=tracks[n];
+ if(!file)return;
+ if(currentTrack===file && !song.paused)return;
+ currentTrack=file;
+ song.src=file;
+ song.load();
+ if(musicStarted) song.play().catch(()=>{});
+}
+function startMusic(){
+ if(musicStarted)return;
+ musicStarted=true;
+ setTrack(1);
+ song.play().catch(()=>{});
+}
+function go(n){
+ pages.forEach(p=>p.classList.remove('active'));
+ document.getElementById('p'+n).classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+ if(musicStarted)setTrack(n);
+ if(n===5)startFinal();
+}
+document.getElementById('startBtn').addEventListener('click',function(){
+ startMusic();
+ go(1);
+});
+
+const letters=[
+"Distance gets annoying sometimes… but whenever I miss you, I remember that I have someone worth missing. ❤️",
+"Aaj birthday hai, so smiling is compulsory. Gussa kal kar lena. 😂🌹",
+"Because tumhari smile achhi lagti hai, tumhari voice achhi lagti hai, tumhara gussa bhi cute lagta hai… and most importantly, because you're you.",
+"I don't know exactly what every tomorrow looks like. Bas itna pata hai ki us tomorrow mein aur memories tumhare saath chahiye — more calls, more meetings, more birthdays together."
+];
+function letter(i){
+ const box=document.getElementById('letter');
+ const titles=['When you miss me','For your smile','Why I love you','Our tomorrow'];
+ box.innerHTML='<h2>'+titles[i]+'</h2><p class="romantic">'+letters[i]+'</p>';
+ box.classList.add('show');
+}
+let finalStarted=false;
+function startFinal(){
+ if(finalStarted)return;
+ finalStarted=true;
+ const lines=["Okay… enough bakchodi. 😂❤️","Sach bolun, Sweety…","there is still so much I want to experience with you.","More calls. More laughter. More surprises.","More chapters… together. ❤️"];
+ let i=0;
+ const el=document.getElementById('finalText');
+ function next(){
+  if(i<lines.length){el.textContent=lines[i++];setTimeout(next,1100)}
+  else{el.textContent='';document.getElementById('end').style.display='block';}
+ }
+ next();
+}
+function unlock(){
+ const v=document.getElementById('pass').value.replace(/\D/g,'');
+ if(v==='15052019'||v==='08072025')document.getElementById('secretMsg').style.display='block';
+ else alert('Hmm… wrong date, Sweety 😏❤️');
+}
+</script>
+</body>
+</html>

@@ -292,44 +292,77 @@ const song=new Audio();
 song.loop=true;
 song.preload='auto';
 song.volume=.72;
+
 const tracks={
-0:'assets/song1.mp3',
-1:'assets/song2.mp3',
-2:'assets/song3.mp3',
-3:'assets/song3.mp3',
-4:'assets/song4.mp3',
-5:'assets/song4.mp3',
-6:'assets/song4.mp3'
+  0:'assets/song1.mp3',
+  1:'assets/song2.mp3',
+  2:'assets/song3.mp3',
+  3:'assets/song3.mp3',
+  4:'assets/song4.mp3',
+  5:'assets/song4.mp3',
+  6:'assets/song4.mp3'
 };
+
 let currentTrack='';
 let musicStarted=false;
 
-function setTrack(n){
- const file=tracks[n];
- if(!file)return;
- if(currentTrack===file && !song.paused)return;
- currentTrack=file;
- song.src=file;
- song.load();
- if(musicStarted) song.play().catch(()=>{});
+function loadTrack(n){
+  const file=tracks[n] || tracks[0];
+  if(currentTrack===file) return;
+  currentTrack=file;
+  song.src=file;
+  song.load();
 }
-function startMusic(){
- if(musicStarted)return;
- musicStarted=true;
- setTrack(1);
- song.play().catch(()=>{});
+
+function tryAutoplay(){
+  if(musicStarted) return;
+  loadTrack(0);
+
+  // Browser-friendly attempt: muted autoplay can be allowed.
+  song.muted=true;
+  song.play().then(()=>{
+    musicStarted=true;
+  }).catch(()=>{});
 }
-function go(n){
- pages.forEach(p=>p.classList.remove('active'));
- document.getElementById('p'+n).classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
- if(musicStarted)setTrack(n);
- if(n===5)startFinal();
+
+// Try as soon as page loads. If browser blocks audible playback,
+// muted playback may still start.
+loadTrack(0);
+tryAutoplay();
+
+function enableMusic(){
+  if(musicStarted){
+    song.muted=false;
+    song.play().catch(()=>{});
+    return;
+  }
+
+  loadTrack(0);
+  song.muted=false;
+  song.play().then(()=>{
+    musicStarted=true;
+  }).catch(()=>{});
 }
-document.getElementById('startBtn').addEventListener('click',function(){
- startMusic();
- go(1);
+
+// Any first natural tap/click starts the audible song.
+// User does NOT need to press a music button.
+['pointerdown','touchstart','keydown'].forEach(evt=>{
+  document.addEventListener(evt,enableMusic,{once:true,passive:true});
 });
+
+function setTrack(n){
+  const file=tracks[n] || tracks[0];
+  if(currentTrack===file && !song.paused) return;
+
+  currentTrack=file;
+  song.src=file;
+  song.load();
+
+  if(musicStarted){
+    song.muted=false;
+    song.play().catch(()=>{});
+  }
+}
 
 const letters=[
 "Distance gets annoying sometimes… but whenever I miss you, I remember that I have someone worth missing. ❤️",

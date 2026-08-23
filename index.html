@@ -271,27 +271,14 @@ body:after{
 <div id="secretMsg" style="display:none"><h2>ACCESS GRANTED 🌹</h2><p>15 May 2019 — our beginning.</p><p>08 July 2025 — the day a screen became real.</p><p class="romantic">“You are still my favourite person.” ❤️</p></div>
 </div></section>
 
-<script>
 
-const heartLayer=document.getElementById('petals');
-function createFloatingHeart(){
- const h=document.createElement('div');
- h.className='floating-heart';
- h.textContent=Math.random()>0.22?'♡':'♥';
- h.style.left=(Math.random()*100)+'vw';
- h.style.setProperty('--drift',(Math.random()*180-90)+'px');
- h.style.animationDuration=(7+Math.random()*6)+'s';
- h.style.fontSize=(12+Math.random()*15)+'px';
- heartLayer.appendChild(h);
- setTimeout(()=>h.remove(),14000);
-}
-for(let i=0;i<12;i++) setTimeout(createFloatingHeart,i*180);
-setInterval(createFloatingHeart,650);
+<script>
 const pages=[...document.querySelectorAll('.page')];
+
 const song=new Audio();
 song.loop=true;
 song.preload='auto';
-song.volume=.72;
+song.volume=0.72;
 
 const tracks={
   0:'assets/song1.mp3',
@@ -306,63 +293,50 @@ const tracks={
 let currentTrack='';
 let musicStarted=false;
 
-function loadTrack(n){
+function setTrack(n){
   const file=tracks[n] || tracks[0];
   if(currentTrack===file) return;
   currentTrack=file;
   song.src=file;
   song.load();
-}
-
-function tryAutoplay(){
-  if(musicStarted) return;
-  loadTrack(0);
-
-  // Browser-friendly attempt: muted autoplay can be allowed.
-  song.muted=true;
-  song.play().then(()=>{
-    musicStarted=true;
-  }).catch(()=>{});
-}
-
-// Try as soon as page loads. If browser blocks audible playback,
-// muted playback may still start.
-loadTrack(0);
-tryAutoplay();
-
-function enableMusic(){
   if(musicStarted){
-    song.muted=false;
+    song.play().catch(()=>{});
+  }
+}
+
+function startMusic(){
+  if(musicStarted){
     song.play().catch(()=>{});
     return;
   }
-
-  loadTrack(0);
+  setTrack(0);
   song.muted=false;
   song.play().then(()=>{
     musicStarted=true;
-  }).catch(()=>{});
+  }).catch(()=>{
+    // Browser may require a user gesture; the first tap handler below retries.
+  });
 }
 
-// Any first natural tap/click starts the audible song.
-// User does NOT need to press a music button.
-['pointerdown','touchstart','keydown'].forEach(evt=>{
-  document.addEventListener(evt,enableMusic,{once:true,passive:true});
+function go(n){
+  if(n<0 || n>=pages.length) return;
+  pages.forEach(p=>p.classList.remove('active'));
+  const next=document.getElementById('p'+n);
+  if(next) next.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(musicStarted) setTrack(n);
+  if(n===5) startFinal();
+}
+
+/* Start sound from the first natural user interaction, without a music button. */
+document.addEventListener('pointerdown', function(){
+  startMusic();
+}, {once:true, passive:true});
+
+document.getElementById('startBtn').addEventListener('click',function(){
+  startMusic();
+  go(1);
 });
-
-function setTrack(n){
-  const file=tracks[n] || tracks[0];
-  if(currentTrack===file && !song.paused) return;
-
-  currentTrack=file;
-  song.src=file;
-  song.load();
-
-  if(musicStarted){
-    song.muted=false;
-    song.play().catch(()=>{});
-  }
-}
 
 const letters=[
 "Distance gets annoying sometimes… but whenever I miss you, I remember that I have someone worth missing. ❤️",
@@ -370,30 +344,45 @@ const letters=[
 "Because tumhari smile achhi lagti hai, tumhari voice achhi lagti hai, tumhara gussa bhi cute lagta hai… and most importantly, because you're you.",
 "I don't know exactly what every tomorrow looks like. Bas itna pata hai ki us tomorrow mein aur memories tumhare saath chahiye — more calls, more meetings, more birthdays together."
 ];
+
 function letter(i){
- const box=document.getElementById('letter');
- const titles=['When you miss me','For your smile','Why I love you','Our tomorrow'];
- box.innerHTML='<h2>'+titles[i]+'</h2><p class="romantic">'+letters[i]+'</p>';
- box.classList.add('show');
+  const box=document.getElementById('letter');
+  const titles=['When you miss me','For your smile','Why I love you','Our tomorrow'];
+  box.innerHTML='<h2>'+titles[i]+'</h2><p class="romantic">'+letters[i]+'</p>';
+  box.classList.add('show');
 }
+
 let finalStarted=false;
 function startFinal(){
- if(finalStarted)return;
- finalStarted=true;
- const lines=["Okay… enough bakchodi. 😂❤️","Sach bolun, Sweety…","there is still so much I want to experience with you.","More calls. More laughter. More surprises.","More chapters… together. ❤️"];
- let i=0;
- const el=document.getElementById('finalText');
- function next(){
-  if(i<lines.length){el.textContent=lines[i++];setTimeout(next,1100)}
-  else{el.textContent='';document.getElementById('end').style.display='block';}
- }
- next();
+  if(finalStarted)return;
+  finalStarted=true;
+  const lines=[
+    "Okay… enough bakchodi. 😂❤️",
+    "Sach bolun, Sweety…",
+    "there is still so much I want to experience with you.",
+    "More calls. More laughter. More surprises.",
+    "More chapters… together. ❤️"
+  ];
+  let i=0;
+  const el=document.getElementById('finalText');
+  function next(){
+    if(i<lines.length){
+      el.textContent=lines[i++];
+      setTimeout(next,1100);
+    }else{
+      el.textContent='';
+      document.getElementById('end').style.display='block';
+    }
+  }
+  next();
 }
+
 function unlock(){
- const v=document.getElementById('pass').value.replace(/\D/g,'');
- if(v==='15052019'||v==='08072025')document.getElementById('secretMsg').style.display='block';
- else alert('Hmm… wrong date, Sweety 😏❤️');
+  const v=document.getElementById('pass').value.replace(/\D/g,'');
+  if(v==='15052019'||v==='08072025'){
+    document.getElementById('secretMsg').style.display='block';
+  }else{
+    alert('Hmm… wrong date, Sweety 😏❤️');
+  }
 }
 </script>
-</body>
-</html>
